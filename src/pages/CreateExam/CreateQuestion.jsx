@@ -1,23 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "src/components/Layout/Layout";
 import "./createExam.css";
-import DetailsExamQuestion from "./DetailsExamQuestion";
+// import DetailsExamQuestion from "./DetailsExamQuestion";
 import SettingExamQuestion from "./SettingExamQuestion";
 
+// eslint-disable-next-line 
 const CreateQuestion = () => {
-  const inputArrays = [
-    {
-      type: "radio",
-      name: "",
-      value: "",
-    },
-    {
-      type: "radio",
-      name: "",
-      value: "",
-    },
-  ];
-  const [inputArr, setInputArr] = useState(inputArrays);
+  // const [inputArr, setInputArr] = useState(inputArrays);
 
   return (
     <>

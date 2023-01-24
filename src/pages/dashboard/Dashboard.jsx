@@ -36,7 +36,7 @@ function Dashboard() {
     if(userId){
       getClasses();
     }
-  }, [getClasses]);
+  }, [getClasses, userId]);
   
   // const data = useQuery(['stats'], async()=>{
   //   try {

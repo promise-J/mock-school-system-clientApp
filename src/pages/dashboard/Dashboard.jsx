@@ -30,7 +30,7 @@ function Dashboard() {
   const [stats, setStats] = useState(null);
   useEffect(() => {
     getClasses();
-  }, []);
+  }, [getClasses]);
   
   // const data = useQuery(['stats'], async()=>{
   //   try {

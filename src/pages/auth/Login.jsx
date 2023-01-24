@@ -3,13 +3,13 @@ import { useHistory, Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import { useDispatch } from "react-redux";
-// import axios from "axios";
+import axios from "axios";
+import Cookie from 'universal-cookie'
 import "./auth.css";
 import { dispatchLogin, dispatchUser } from "../../redux/actions/authAction";
 import styled from "styled-components";
 import { Check, Clear } from "@material-ui/icons";
 import {useNotify} from '../../customHooks'
-import axios from "axios";
 
 const InputSpan = styled.span`
   font-size: 12px;
@@ -30,6 +30,7 @@ function Login() {
   const history = useHistory()
   const dispatch = useDispatch();
   const notify = useNotify()
+  const cookies = new Cookie()
 
   const initialState = {
     loginID: "",
@@ -47,7 +48,7 @@ function Login() {
     e.preventDefault()
     try {
       const res = await axios.post('/users/login', {loginID: 'admin', password: 'superadmin'})
-      window.localStorage.setItem("isLogged", true);
+      window.localStorage.setItem("userId", res.data.user._id);
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
       notify("success", "Login Successful");

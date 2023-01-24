@@ -26,6 +26,7 @@ axios.interceptors.response.use(
     if (errMsg) {
       if (errStatus === 400 && errMsg && errMsg.includes("Authorization")) {
         console.log('this is going out')
+        localStorage.removeItem('userId')
         store.dispatch(dispatchLogout());
       }
     }
@@ -34,15 +35,17 @@ axios.interceptors.response.use(
 );
 
 
-// axios.interceptors.request.use(
-//   function (config) {
-//     console.log(config, 'the axios request')
-//     return config
-//   },
-//   function(error){
-//     return Promise.reject(error)
-//   }
-// );
+axios.interceptors.request.use(
+  function (config) {
+    if(userId){
+      config.headers['userId'] = userId
+    }
+    return config
+  },
+  function(error){
+    return Promise.reject(error)
+  }
+);
 
 ReactDOM.render(
   <React.StrictMode>

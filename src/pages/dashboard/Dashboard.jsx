@@ -20,6 +20,7 @@ import { useCallback } from "react";
 function Dashboard() {
   const userId = localStorage.getItem('userId')
   const { user, role } = useSelector((state) => state.auth);
+  const [stats, setStats] = useState(null);
 
 
   const getClasses = useCallback(async()=>{
@@ -31,9 +32,10 @@ function Dashboard() {
     }
   }, [userId])
 
-  const [stats, setStats] = useState(null);
   useEffect(() => {
-    getClasses();
+    if(userId){
+      getClasses();
+    }
   }, [getClasses]);
   
   // const data = useQuery(['stats'], async()=>{

@@ -35,18 +35,15 @@ axios.interceptors.response.use(
 );
 
 
-axios.interceptors.request.use(
-  function (config) {
-    if(userId){
-      console.log('userId is set to headers')
-      config.headers['userId'] = userId
-    }
-    return config
-  },
-  function(error){
-    return Promise.reject(error)
-  }
-);
+// axios.interceptors.request.use(
+//   function (config) {
+//     console.log(config, 'the axios request')
+//     return config
+//   },
+//   function(error){
+//     return Promise.reject(error)
+//   }
+// );
 
 ReactDOM.render(
   <React.StrictMode>

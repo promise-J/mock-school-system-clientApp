@@ -4,7 +4,7 @@ import Header from "../../components/header/Header";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import Cookie from 'universal-cookie'
+// import Cookie from 'universal-cookie'
 import "./auth.css";
 import { dispatchLogin, dispatchUser } from "../../redux/actions/authAction";
 import styled from "styled-components";
@@ -30,7 +30,7 @@ function Login() {
   const history = useHistory()
   const dispatch = useDispatch();
   const notify = useNotify()
-  const cookies = new Cookie()
+  // const cookies = new Cookie()
 
   const initialState = {
     loginID: "",

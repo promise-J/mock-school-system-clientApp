@@ -46,7 +46,7 @@ function Login() {
   const adminLogin = async(e)=>{
     e.preventDefault()
     try {
-      const res = await axios.post('/users/login', {loginID: 'admin', password: 'superadmin'})
+      const res = await axios.post('/api/users/login', {loginID: 'admin', password: 'superadmin'})
       window.localStorage.setItem("isLogged", true);
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
@@ -61,7 +61,7 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post("/users/login", { loginID, password });
+      const res = await axios.post("/api/users/login", { loginID, password });
       window.localStorage.setItem("isLogged", true);
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));

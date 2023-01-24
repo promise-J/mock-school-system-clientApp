@@ -25,7 +25,7 @@ function Dashboard() {
 
   const getClasses = useCallback(async()=>{
     try {
-      const res = await axios.get("/stats", {headers: {"useridk": userId}});
+      const res = await axios.get("/stats", {headers: {userid: userId}});
       console.log(res.data.stats, 'the status')
       setStats(res.data.stats);
     } catch (error) {

@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/https://resonance-test.netlify.app"
+  from = "/https://main--resonance-test.netlify.app"
   to = "https://mock-school-backend.onrender.com"
   status = 200
   force = true

@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/https://resonance-test.netlify.app
+  from = "/https://resonance-test.netlify.app"
   to = "https://mock-school-backend.onrender.com"
   status = 200
   force = true
@@ -8,3 +8,7 @@
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+[build]
+  command = "npm run build"
+  publish="/build"
+  base = "/"

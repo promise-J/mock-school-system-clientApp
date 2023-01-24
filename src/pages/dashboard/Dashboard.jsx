@@ -17,11 +17,12 @@ import axios from "axios";
 
 // eslint-disable-next-line
 function Dashboard() {
+  const userId = localStorage.getItem('userId')
   const { user, role } = useSelector((state) => state.auth);
 
   const getClasses = async () => {
     try {
-      const res = await axios.get("/stats");
+      const res = await axios.get("/stats", {headers: {userId}});
       setStats(res.data.stats);
     } catch (error) {
     }

@@ -38,6 +38,7 @@ axios.interceptors.response.use(
 axios.interceptors.request.use(
   function (config) {
     if(userId){
+      console.log('userId is set to headers')
       config.headers['userId'] = userId
     }
     return config

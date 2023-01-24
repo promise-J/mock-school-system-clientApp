@@ -25,17 +25,12 @@ function Dashboard() {
   const getClasses = useCallback(async()=>{
     try {
       const res = await axios.get("/stats", {headers: {userId}});
+      console.log(res.data.stats, 'the status')
       setStats(res.data.stats);
     } catch (error) {
     }
   }, [userId])
-  // const getClasses = async () => {
-  //   try {
-  //     const res = await axios.get("/stats", {headers: {userId}});
-  //     setStats(res.data.stats);
-  //   } catch (error) {
-  //   }
-  // };
+
   const [stats, setStats] = useState(null);
   useEffect(() => {
     getClasses();
@@ -48,7 +43,7 @@ function Dashboard() {
   //     return new Error(error)
   //   }
   // })
-  // console.log(data.data, 'from the query')
+  console.log(user, stats, 'from the query')
 
   return (
     <>

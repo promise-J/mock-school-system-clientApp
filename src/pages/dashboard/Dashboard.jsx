@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import { isPrincipal } from "../../utils/roleChecks";
 import axios from "axios";
+import { useCallback } from "react";
 // import {
 //   useQuery,
 // } from "@tanstack/react-query";
@@ -20,13 +21,21 @@ function Dashboard() {
   const userId = localStorage.getItem('userId')
   const { user, role } = useSelector((state) => state.auth);
 
-  const getClasses = async () => {
+
+  const getClasses = useCallback(async()=>{
     try {
       const res = await axios.get("/stats", {headers: {userId}});
       setStats(res.data.stats);
     } catch (error) {
     }
-  };
+  }, [userId])
+  // const getClasses = async () => {
+  //   try {
+  //     const res = await axios.get("/stats", {headers: {userId}});
+  //     setStats(res.data.stats);
+  //   } catch (error) {
+  //   }
+  // };
   const [stats, setStats] = useState(null);
   useEffect(() => {
     getClasses();

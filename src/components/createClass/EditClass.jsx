@@ -32,7 +32,7 @@ function EditClass() {
 
   const getAllSubjects = async () => {
     try {
-      const res = await axios.get("/subject");
+      const res = await axiosInstance.get("/subject");
       setAllSubjects(res.data.subjects);
     } catch (error) {
       console.log(error);
@@ -77,7 +77,7 @@ function EditClass() {
       setUpdating(true);
 
       try {
-        await axios.put(`/class/${classID}`, {
+        await axiosInstance.put(`/class/${classID}`, {
           subjects: editSubjects,
           name,
           code,

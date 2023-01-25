@@ -36,7 +36,7 @@ function ResultCheck() {
   const handleLogout = async () => {
     try {
       await axiosInstance.get("/users/logout");
-      // localStorage.removeItem("firstLogin");
+      localStorage.removeItem("userId");
       dispatch(dispatchLogout());
       history.push("/");
     } catch (error) {

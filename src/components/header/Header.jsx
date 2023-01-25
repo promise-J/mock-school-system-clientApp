@@ -22,7 +22,7 @@ function Header() {
     setToggle((state) => !state);
     try {
       await axiosInstance.get("/users/logout");
-      window.localStorage.removeItem("isLogged");
+      window.localStorage.removeItem("userId");
       dispatch(dispatchLogout());
       history.push("/");
     } catch (error) {
@@ -34,7 +34,7 @@ function Header() {
   const logout = async () => {
     try {
       await axiosInstance.get("/users/logout");
-      localStorage.removeItem("firstLogin");
+      localStorage.removeItem("userId");
       dispatch(dispatchLogout());
       history.push("/");
     } catch (error) {

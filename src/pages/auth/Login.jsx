@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import Header from "../../components/header/Header";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import { useDispatch } from "react-redux";
@@ -31,6 +31,12 @@ function Login() {
   const dispatch = useDispatch();
   const notify = useNotify()
   // const cookies = new Cookie()
+  useEffect(()=>{
+    const userId = localStorage.getItem('userId')
+    if(userId){
+      return <Redirect to={"/dashboard"} />
+    }
+  },[])
 
   const initialState = {
     loginID: "",

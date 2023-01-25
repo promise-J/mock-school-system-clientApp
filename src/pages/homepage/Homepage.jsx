@@ -3,14 +3,22 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import School1 from "../../images/school1.jpg";
 import School2 from "../../images/school2.jpg";
 import School3 from "../../images/school3.jpg";
 import School4 from "../../images/school4.jpg";
+import { useEffect } from "react";
 
 function Homepage() {
+
+  useEffect(()=>{
+    const userId = localStorage.getItem('userId')
+    if(userId){
+      return <Redirect to={"/dashboard"} />
+    }
+  },[])
   const handleDragStart = (e)=>{
     e.preventDefault()
   }

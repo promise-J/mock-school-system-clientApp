@@ -1,9 +1,3 @@
-[[redirects]]
-  from = "/https://main--resonance-test.netlify.app"
-  to = "https://mock-school-backend.onrender.com"
-  status = 200
-  force = true
-  headers = {X-From = "Netlify"}
 [[headers]]
   for = "/*"
   [headers.values]

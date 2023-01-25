@@ -10,42 +10,30 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import { isPrincipal } from "../../utils/roleChecks";
-import axios from "axios";
 import { useCallback } from "react";
+import axiosInstance from "src/utils/axios";
 // import {
 //   useQuery,
 // } from "@tanstack/react-query";
 
 // eslint-disable-next-line
 function Dashboard() {
-  const userId = localStorage.getItem('userId')
   const { user, role } = useSelector((state) => state.auth);
   const [stats, setStats] = useState(null);
 
 
   const getClasses = useCallback(async()=>{
     try {
-      const res = await axios.get("/stats", {headers: {userid: userId}});
-      console.log(res.data.stats, 'the status')
+      const res = await axiosInstance.get("/stats");
       setStats(res.data.stats);
     } catch (error) {
     }
-  }, [userId])
+  }, [])
 
   useEffect(() => {
-    if(userId){
       getClasses();
-    }
-  }, [getClasses, userId]);
+  }, [getClasses]);
   
-  // const data = useQuery(['stats'], async()=>{
-  //   try {
-  //     return await axios.get('/stats')
-  //   } catch (error) {
-  //     return new Error(error)
-  //   }
-  // })
-  console.log(user, stats, 'from the query')
 
   return (
     <>

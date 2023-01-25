@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import Loading from "../loading/Loading";
 import {useNotify} from '../../customHooks'
 import { isPrincipal } from "src/utils/roleChecks";
+import axiosInstance from "src/utils/axios";
 
 function EditClass() {
   const { classID } = useParams();
@@ -21,7 +21,7 @@ function EditClass() {
   const { role } = useSelector((state) => state.auth);
 
   const getSingleClass = async () => {
-    const res = await axios.get(`/class/${classID}`);
+    const res = await axiosInstance.get(`/class/${classID}`);
     setName(res.data.name);
     setCode(res.data.code);
 

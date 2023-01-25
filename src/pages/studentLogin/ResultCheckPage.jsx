@@ -3,10 +3,10 @@ import Header from "../../components/header/Header";
 import "./studentLogin.css";
 import { SearchOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { dispatchLogin, dispatchUser } from "../../redux/actions/authAction";
 import { useNotify } from "src/customHooks";
+import axiosInstance from "src/utils/axios";
 
 function StudentLogin() {
   const notify = useNotify()
@@ -28,7 +28,7 @@ function StudentLogin() {
 
   useEffect(() => {
     const getSessions = async () => {
-      const res = await axios.get("/session/all/session");
+      const res = await axiosInstance.get("/session/all/session");
 
       setAllSessions(res.data.sessions);
     };
@@ -50,7 +50,7 @@ function StudentLogin() {
 
     const getResult = async () => {
       try {
-        const res = await axios.post(`/result/authenticate`, {
+        const res = await axiosInstance.post(`/result/authenticate`, {
           session,
           user: loginID,
           term,

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Pagination from "../pagination/Pagination";
 import { useSelector } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
 import Loading from "../loading/Loading";
 import { isAdmin } from "../../utils/roleChecks";
 import {useNotify} from '../../customHooks'
+import axiosInstance from "src/utils/axios";
 
 function ViewStudent() {
   const notify = useNotify()
@@ -20,7 +20,7 @@ function ViewStudent() {
   useEffect(() => {
     const getStudents = async () => {
       setLoading(true);
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `/users/all/students?page=${pageNumber}`
       );
       const { students, totalPages } = data;
@@ -45,7 +45,7 @@ function ViewStudent() {
     setStudents(students.filter((s) => s.id !== id));
     notify('success', 'Delete Successful')
     try {
-      await axios.delete(`/users/${id}`);
+      await axiosInstance.delete(`/users/${id}`);
     } catch (error) {
       console.log(error);
     }

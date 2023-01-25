@@ -1,7 +1,7 @@
 /* eslint-disable */
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import axiosInstance from "src/utils/axios";
 import Layout from "../../components/Layout/Layout";
 import Loading from "../../components/loading/Loading";
 import "./AdminPassword.css";
@@ -34,7 +34,7 @@ function AdminPassword() {
     try {
       const getCards = async () => {
         setLoading(true);
-        const res = await axios.get("/scratch");
+        const res = await axiosInstance.get("/scratch");
         setCards(res.data.cards);
         setCardTotal(res.data.total);
         setInvalidCards(res.data.invalidCards);

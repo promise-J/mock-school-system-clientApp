@@ -1,9 +1,9 @@
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNotify } from "src/customHooks";
+import axiosInstance from "src/utils/axios";
 import Loading from "../../loading/Loading";
 import Pagination from "../../pagination/Pagination";
 
@@ -21,7 +21,7 @@ function ViewClass() {
     const getClasses = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get("/class");
+        const { data } = await axiosInstance.get("/class");
 
         const { totalPages, classes } = data;
         setAllClasses(classes);
@@ -49,7 +49,7 @@ function ViewClass() {
     try {
       setAllClasses(allClasses.filter((c) => c._id !== id));
       notify("success", "Deleted Successfully");
-      await axios.delete(`/class/${id}`);
+      await axiosInstance.delete(`/class/${id}`);
     } catch (error) {
       console.log(error);
     }

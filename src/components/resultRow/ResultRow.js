@@ -1,6 +1,6 @@
 import { Edit, Save } from "@material-ui/icons";
-import axios from "axios";
 import React, { useState } from "react";
+import axiosInstance from "src/utils/axios";
 import './resultRow.css'
 
 function ResultRow({ item, studentName }) {
@@ -27,7 +27,7 @@ function ResultRow({ item, studentName }) {
       try {
         // const rawTotal = Number(exam) + Number(firstTest) + Number(secondTest)
 
-        const res = await axios.put(`/resItem/${item._id}`, {
+        const res = await axiosInstance.put(`/resItem/${item._id}`, {
           firstTest,
           secondTest,
           exam,

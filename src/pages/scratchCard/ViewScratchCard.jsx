@@ -1,7 +1,7 @@
 import { Check, Clear, DeleteOutline } from '@material-ui/icons';
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axiosInstance from 'src/utils/axios';
 import Layout from '../../components/Layout/Layout';
 import Loading from '../../components/loading/Loading';
 import Pagination from '../../components/pagination/Pagination';
@@ -19,7 +19,7 @@ const ViewScratchCard = () => {
   useEffect(()=>{
     const getScratch = async()=>{
       setLoading(true)
-      const res = await axios.get(`/scratch?page=${pageNumber}`)
+      const res = await axiosInstance.get(`/scratch?page=${pageNumber}`)
       setScratchs(res.data.cards)
       setNoOfPages(res.data.totalPages)
       setLoading(false)
@@ -40,7 +40,7 @@ const ViewScratchCard = () => {
   const deleteCard = async(id)=>{
       setScratchs(scratchs.filter(s=> s.id !== id))
       try {
-          await axios.delete(`/scratch/${id}`)
+          await axiosInstance.delete(`/scratch/${id}`)
         } catch (error) {
         console.log(error)
     }

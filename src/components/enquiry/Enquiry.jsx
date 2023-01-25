@@ -1,8 +1,8 @@
 import "./Enquiry.css";
 import { Check, Clear } from "@material-ui/icons";
-import axios from "axios";
 import React, { useState } from "react";
 import styled from 'styled-components'
+import axiosInstance from "src/utils/axios";
 
 
 
@@ -42,7 +42,7 @@ function Enquiry() {
   const sendMail = async(e)=>{
     e.preventDefault()
     try {
-        const res = await axios.post('/users/emailing', {content, senderEmail: email})
+        const res = await axiosInstance.post('/users/emailing', {content, senderEmail: email})
         console.log(res.data)
         setContent('')
         setEmail('')

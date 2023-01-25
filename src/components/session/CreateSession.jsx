@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Alert from "../alert/Alert";
 import {useNotify} from '../../customHooks'
+import axiosInstance from "src/utils/axios";
 
 function CreateSession() {
   const notify = useNotify()
@@ -28,7 +28,7 @@ function CreateSession() {
   useEffect(() => {
     if (sessionID) {
       const getEdit = async () => {
-        const { data } = await axios.get(`/session/${sessionID}`);
+        const { data } = await axiosInstance.get(`/session/${sessionID}`);
         setEData({ year: data.year, currentTerm: data.currentTerm });
       };
       getEdit();
@@ -57,7 +57,7 @@ function CreateSession() {
 
         return notify('error', 'Term must Either be first, second or third')
       }
-      await axios.put(`/session/${sessionID}`, {
+      await axiosInstance.put(`/session/${sessionID}`, {
         currentTerm: eData.currentTerm.toLowerCase(),
       });
       // setData({ ...data, success: res.data });
@@ -81,7 +81,7 @@ function CreateSession() {
         return notify('error', 'Term must either be first, second or third')
       }
       try {
-        const res = await axios.post("/session", {
+        const res = await axiosInstance.post("/session", {
           year,
           currentTerm: currentTerm.toLowerCase(),
         });

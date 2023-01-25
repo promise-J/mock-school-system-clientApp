@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Pagination from "../../components/pagination/Pagination";
 import { useSelector } from "react-redux";
 import { DeleteOutline, EditOutlined } from "@material-ui/icons";
 import Loading from "../../components/loading/Loading";
+import axiosInstance from "src/utils/axios";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -20,7 +20,7 @@ const Teachers = () => {
   useEffect(() => {
     const getTeachers = async () => {
       setLoading(true);
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `/users/all/teachers?page=${pageNumber}`
       );
       const { teachers, totalPages } = data;
@@ -43,7 +43,7 @@ const Teachers = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`/users/${id}`);
+      await axiosInstance.delete(`/users/${id}`);
       setTeachers(teachers.filter((s) => s.id !== id));
       setCb(!cb);
     } catch (error) {

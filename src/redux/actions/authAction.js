@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "src/utils/axios";
 import ACTIONS from "./index";
 
 export const dispatchLogin = () => {
@@ -20,7 +20,7 @@ export const dispatchLogout = () => {
 
 export const fetchUser = async () => {
   try {
-    const res = await axios.get("/users/info");
+    const res = await axiosInstance.get("/users/info");
     return res.data.user;
   } catch (error) {
     console.log(error, 'from the info')

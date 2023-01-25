@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./resultCheck.css";
 import { useHistory, useLocation } from "react-router-dom";
-import axios from "axios";
 import Logo from "../../images/image.jpg";
 import { dispatchLogout } from "src/redux/actions/authAction";
 import { useDispatch } from "react-redux";
+import axiosInstance from "src/utils/axios";
 
 function ResultCheck() {
   const [result, setResult] = useState(null);
@@ -19,7 +19,7 @@ function ResultCheck() {
     if (resultId) {
       const getResult = async () => {
         try {
-          const res = await axios.get(`/result/${resultId}`);
+          const res = await axiosInstance.get(`/result/${resultId}`);
           console.log(res.data, 'the check data')
           setResult(res.data.result);
           // setCardInfo(res.data.card);
@@ -35,7 +35,7 @@ function ResultCheck() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("/users/logout");
+      await axiosInstance.get("/users/logout");
       // localStorage.removeItem("firstLogin");
       dispatch(dispatchLogout());
       history.push("/");

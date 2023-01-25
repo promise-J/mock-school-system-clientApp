@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
@@ -10,7 +9,7 @@ import { isAdmin } from "../../utils/roleChecks";
 import Pagination from "../pagination/index";
 import { useFilter } from "../../customHooks";
 import './viewResult.css'
-// import Pagination from "src/components/pagination/";
+import axiosInstance from "src/utils/axios";
 
 
 function ViewResult() {
@@ -56,7 +55,7 @@ function ViewResult() {
     if (isAdmin(role)) {
       const getSessions = async () => {
         setLoading(true);
-        const res = await axios.get('/session/all/session');
+        const res = await axiosInstance.get('/session/all/session');
         setSessions(res.data.sessions);
         setLoading(false);
       };
@@ -81,7 +80,7 @@ function ViewResult() {
     if (isAdmin(role)) {
       const getResults = async () => {
         setLoad(true);
-        const { data } = await axios.get(`/result`, { params: query });
+        const { data } = await axiosInstance.get(`/result`, { params: query });
         const { results, pagination, recentYear } = data;
         setCurrentSession(recentYear)
 
@@ -120,7 +119,7 @@ function ViewResult() {
   const deleteItem = async (id) => {
     try {
       setResults(results.filter((s) => s.id !== id));
-      await axios.delete(`/result/${id}`);
+      await axiosInstance.delete(`/result/${id}`);
     } catch (error) {
       console.log(error);
     }

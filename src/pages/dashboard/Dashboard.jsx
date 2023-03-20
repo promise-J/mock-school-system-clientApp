@@ -27,6 +27,7 @@ function Dashboard() {
       const res = await axiosInstance.get("/stats");
       setStats(res.data.stats);
     } catch (error) {
+      console.log(error, 'the stats')
     }
   }, [])
 

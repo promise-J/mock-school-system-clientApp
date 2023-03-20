@@ -38,7 +38,7 @@ function Homepage() {
           src={School2}
           alt="Resonance"
           width="100px"
-          autoWidth="false"
+          autowidth="false"
           style={{ width: "100%", height: '100%' }}
           role="presentation"
           onDragStart={handleDragStart}

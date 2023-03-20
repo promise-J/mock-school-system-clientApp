@@ -18,7 +18,6 @@ import './sidebar.css'
 const Sidebar = ({student}) => {
     const { user, role } = useSelector((state) => state.auth);
     const loca = useLocation()
-
     const [location, setLocation] = useState('')
 
     useEffect(()=>{

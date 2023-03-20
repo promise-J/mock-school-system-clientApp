@@ -86,7 +86,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const logged = localStorage.getItem("isLogged");
+    const logged = localStorage.getItem("userId");
     if (!user && logged) {
       const getUser = async () => {
         dispatch(dispatchLogin());
